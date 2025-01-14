@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Product Form</title>
+</head>
+<body>
+    <form action="/product/save" method="post">
+        <input name="name" th:value="${product.name}">
+        <input name="price" th:value="${product.price}">
+        <button>Save</button>
+    </form>
+    <ul>
+        <li th:text="${savedProduct?.name}"></li>
+        <li th:text="${savedProduct?.price}"></li>
+    </ul>
+    <ul>
+        <th:block th:each="item : ${products}">
+            <li th:text="${item.name}"></li>
+            <li th:text="${item.price}"></li>
+        </th:block>
+    </ul>
+    
+</body>
+</html>
