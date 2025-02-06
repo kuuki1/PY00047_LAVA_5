@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="base::layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <section class="py-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <!-- Product Image -->
+                <div class="col-lg-6 text-center mb-4">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7DMuolVZtH4cUYULLjMDpqGmP5eaNm7usvQ&s" 
+                         alt="Product Image" height="450px">
+                </div>
+
+                <!-- Product Details -->
+                <div class="col-lg-6">
+                    <h2 class="fw-bold">AirPods</h2>
+                    <p class="mb-1"><strong>Description:</strong></p>
+                    <p>AirPods Pro</p>
+
+                    <p class="mb-1"><strong>Product Details:</strong></p>
+                    <ul>
+                        <li>Status: <span class="badge bg-success">Available</span> <span class="badge bg-warning">Out of stock</span></li>
+                        <li>Category: AirPods</li>
+                        <li>Policy: 7 Days Replacement & Return</li>
+                    </ul>
+
+                    <p class="fs-5 fw-bold">
+                        Price: 350,000 
+                        <span class="fs-6 text-decoration-line-through text-secondary">700,000</span> 
+                        <span class="fs-6 text-success">50% off</span>
+                    </p>
+
+                    <!-- Features -->
+                    <div class="row text-center mb-4">
+                        <div class="col-4 text-danger">
+                            <i class="fas fa-money-bill-wave fa-2x"></i>
+                            <p class="mb-0">Cash On Delivery</p>
+                        </div>
+                        <div class="col-4 text-danger">
+                            <i class="fas fa-undo-alt fa-2x"></i>
+                            <p class="mb-0">Return Available</p>
+                        </div>
+                        <div class="col-4 text-danger">
+                            <i class="fas fa-truck-moving fa-2x"></i>
+                            <p class="mb-0">Free Shipping</p>
+                        </div>
+                    </div>
+
+                    <!-- Add to Cart Button -->
+                    <div>
+                        <a href="#" class="btn btn-danger btn-lg w-100">Add To Cart</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

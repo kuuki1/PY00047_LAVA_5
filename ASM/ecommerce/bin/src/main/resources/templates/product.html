@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="base::layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .category-card:hover {
+            background-color: #0d6efd;
+            color: white;
+            cursor: pointer;
+        }
+        .search-bar {
+            background-color: #0d6efd;
+            padding: 20px;
+            border-radius: 10px;
+            color: white;
+        }
+        .product-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <!-- Hero Section -->
+        <div class="container-fluid bg-primary text-white py-5 text-center">
+            <h1 class="display-4">Welcome to Our Blue Store</h1>
+            <p class="lead">Find your favorite Apple products here.</p>
+            <form class="d-flex justify-content-center mt-3">
+                <input type="text" class="form-control w-50" placeholder="Search for products...">
+                <button class="btn btn-light ms-2"><i class="fa fa-search"></i> Search</button>
+            </form>
+        </div>
+
+        <!-- Main Content -->
+        <div class="container my-5">
+            <div class="row">
+                <!-- Categories Section -->
+                <div class="col-md-3">
+                    <h5 class="text-dark mb-3">Categories</h5>
+                    <div class="list-group">
+                        <a href="#" class="list-group-item list-group-item-actionz">
+                            All Products
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action">Mac</a>
+                        <a href="#" class="list-group-item list-group-item-action">iPhone</a>
+                        <a href="#" class="list-group-item list-group-item-action">iPad</a>
+                        <a href="#" class="list-group-item list-group-item-action">Apple Watch</a>
+                        <a href="#" class="list-group-item list-group-item-action">AirPods</a>
+                        <a href="#" class="list-group-item list-group-item-action">Accessories</a>
+                    </div>
+                </div>
+
+                <!-- Products Section -->
+                <div class="col-md-9">
+                    <h5 class="text-dark text-center mb-4">Products</h5>
+                    <div class="row g-4">
+                        <!-- Product Card 1 -->
+                        <div class="col-md-4">
+                            <div class="card border-0 shadow-sm">
+                                <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Product 1">
+                                <div class="card-body">
+                                    <h6 class="card-title">MacBook Pro</h6>
+                                    <div class="row text-center">
+                                        <p class="card-text text-muted fw-bold">$249 <span class="fs-6 text-success">20% off</span></p>
+                                    </div>
+                                    <button class="btn btn-primary btn-sm w-100">View Details</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Product Card 2 -->
+                        <div class="col-md-4">
+                            <div class="card border-0 shadow-sm">
+                                <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Product 2">
+                                <div class="card-body">
+                                    <h6 class="card-title">iPhone 14</h6>
+                                    <div class="row text-center">
+                                        <p class="card-text text-muted fw-bold">$249 <span class="fs-6 text-success">20% off</span></p>
+                                    </div>
+                                    <button class="btn btn-primary btn-sm w-100">View Details</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Product Card 3 -->
+                        <div class="col-md-4">
+                            <div class="card border-0 shadow-sm">
+                                <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Product 3">
+                                <div class="card-body">
+                                    <h6 class="card-title">iPad Pro</h6>
+                                    <div class="row text-center">
+                                        <p class="card-text text-muted fw-bold">$249 <span class="fs-6 text-success">20% off</span></p>
+                                    </div>
+                                    <button class="btn btn-primary btn-sm w-100">View Details</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Row 2 of Products -->
+                    <div class="row g-4 mt-3">
+                        <!-- Product Card 4 -->
+                        <div class="col-md-4">
+                            <div class="card border-0 shadow-sm">
+                                <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Product 4">
+                                <div class="card-body">
+                                    <h6 class="card-title">Apple Watch</h6>
+                                    <div class="row text-center">
+                                        <p class="card-text text-muted fw-bold">$249 <span class="fs-6 text-success">20% off</span></p>
+                                    </div>
+                                    <button class="btn btn-primary btn-sm w-100">View Details</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Product Card 5 -->
+                        <div class="col-md-4">
+                            <div class="card border-0 shadow-sm">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7DMuolVZtH4cUYULLjMDpqGmP5eaNm7usvQ&s" class="card-img-top" alt="Product 5">
+                                <div class="card-body">
+                                    <h6 class="card-title">AirPods Pro</h6>
+                                    <div class="row text-center">
+                                        <p class="card-text text-muted fw-bold">$249 <span class="fs-6 text-success">20% off</span></p>
+                                    </div>
+                                    
+                                    <button class="btn btn-primary btn-sm w-100" onclick="window.location.href='/product'">View Details</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

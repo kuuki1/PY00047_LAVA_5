@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="base::layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>account</title>
+</head>
+<body>
+    <section>
+        <div class="container mt-5">
+            <h2 class="text-center mb-4">User Account Information</h2>
+        
+            <!-- User Details Section -->
+            <div class="row">
+                <div class="col-md-4">
+                    <h4>Profile Picture</h4>
+                    <!-- Sample Profile Image -->
+                    <img src="https://via.placeholder.com/200" alt="Profile Picture" class="img-fluid rounded-circle" width="200">
+                </div>
+                <div class="col-md-8">
+                    <h4>User Details</h4>
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>Name</th>
+                            <td>Chiến Trẻ Trâu</td>
+                        </tr>
+                        <tr>
+                            <th>Mobile Number</th>
+                            <td>+1 234 567 890</td>
+                        </tr>
+                        <tr>
+                            <th>Email</th>
+                            <td>abc@gmail.com</td>
+                        </tr>
+                        <tr>
+                            <th>Address</th>
+                            <td>Ở đâu thì không biết</td>
+                        </tr>
+                        <tr>
+                            <th>City</th>
+                            <td>Quy Nhơn</td>
+                        </tr>
+                        <tr>
+                            <th>State</th>
+                            <td>Illinois</td>
+                        </tr>
+                        <tr>
+                            <th>Pincode</th>
+                            <td>62701</td>
+                        </tr>
+                        <tr>
+                            <th>Role</th>
+                            <td>User</td>
+                        </tr>
+                        <tr>
+                            <th>Status</th>
+                            <td><span class="badge bg-success">Active</span></td>
+                        </tr>
+                    </table>
+        
+                    <h4>Account Settings</h4>
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>Account Locked</th>
+                            <td><span class="badge bg-danger">No</span></td>
+                        </tr>
+                        <tr>
+                            <th>Failed Attempts</th>
+                            <td>0</td>
+                        </tr>
+                        <tr>
+                            <th>Lock Time</th>
+                            <td>N/A</td>
+                        </tr>
+                        <tr>
+                            <th>Password Reset Token</th>
+                            <td>N/A</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <!-- End User Details Section -->
+        
+            <!-- Action Buttons -->
+            <div class="text-center mt-4">
+                <button class="btn btn-warning">Edit Information</button>
+                <button class="btn btn-danger">Deactivate Account</button>
+            </div>
+            <br>
+        </div>
+    </section>
+</body>
+</html>

@@ -20,4 +20,44 @@ public class homeController {
     public String register(){
         return "register";
     }
+
+    @GetMapping("/products")
+    public String products(){
+        return "product";
+    }
+
+    @GetMapping("/product")
+    public String viewProducts(){
+        return "product-detail";
+    }
+
+    @GetMapping("/forgotPass")
+    public String forgotPass(){
+        return"forgot_password";
+    }
+
+    @GetMapping("/terms-and-conditions")
+    public String termsAndConditions() {
+        return "terms-and-conditions";
+    }
+
+    @GetMapping("/privacy-policy")
+    public String privacyPolicy() {
+        return "privacy-policy";
+    }
+
+    @GetMapping("/copyright")
+    public String copyright() {
+        return "copyright";
+    }
+
+    @GetMapping("/cart")
+    public String cart() {
+        return "cart";
+    }
+
+    @GetMapping("/account")
+    public String account() {
+        return "account";
+    }
 }
