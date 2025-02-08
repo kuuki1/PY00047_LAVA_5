@@ -7,69 +7,75 @@
 </head>
 <body>
     <section>
-        <div class="container p-5">
-            <p class="text-center fs-3 mt-2 text-primary fw-bold">Say Hi Admin</p>
-            <div class="row p-5">
+        <style>
+            body {
+                background-color: #f4f6f9;
+            }
+            .dashboard-card {
+                border-radius: 15px;
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+            .dashboard-card:hover {
+                transform: scale(1.05);
+                box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+            }
+            .dashboard-card i {
+                color: #fff;
+                padding: 20px;
+                border-radius: 50%;
+                background: rgba(255, 255, 255, 0.2);
+            }
+        </style>
+        <div class="container py-5">
+            <h2 class="text-center text-primary fw-bold">Welcome, Admin</h2>
+            <div class="row g-4 mt-4">
                 <div class="col-md-4">
                     <a href="/admin/loadAddProduct" class="text-decoration-none">
-                        <div class="card">
-                            <div class="card-body text-center">
-                                <i class="fa-solid fa-plus fa-2x"></i>
-                                <p class="fs-4 fw-bold">Add Product</p>
-                            </div>
+                        <div class="card bg-primary text-white text-center p-4 dashboard-card">
+                            <i class="fa-solid fa-plus fa-3x"></i>
+                            <p class="fs-4 fw-bold mt-3">Add Product</p>
                         </div>
                     </a>
                 </div>
                 <div class="col-md-4">
                     <a href="/admin/category" class="text-decoration-none">
-                        <div class="card">
-                            <div class="card-body text-center">
-                                <i class="fa-solid fa-list fa-2x"></i>
-                                <p class="fs-4 fw-bold">Category</p>
-                            </div>
+                        <div class="card bg-success text-white text-center p-4 dashboard-card">
+                            <i class="fa-solid fa-list fa-3x"></i>
+                            <p class="fs-4 fw-bold mt-3">Manage Categories</p>
                         </div>
                     </a>
                 </div>
                 <div class="col-md-4">
-                    <a href="#" class="text-decoration-none">
-                        <div class="card">
-                            <div class="card-body text-center">
-                                <i class="fa-solid fa-book fa-2x"></i>
-                                <p class="fs-4 fw-bold">View Product</p>
-                            </div>
+                    <a href="/admin/products" class="text-decoration-none">
+                        <div class="card bg-warning text-white text-center p-4 dashboard-card">
+                            <i class="fa-solid fa-box fa-3x"></i>
+                            <p class="fs-4 fw-bold mt-3">View Products</p>
                         </div>
                     </a>
                 </div>
             </div>
-
-            <div class="row p-5">  
+            <div class="row g-4 mt-4">
                 <div class="col-md-4">
                     <a href="#" class="text-decoration-none">
-                        <div class="card">
-                            <div class="card-body text-center">
-                                <i class="fa-solid fa-box-open fa-2x"></i>
-                                <p class="fs-4 fw-bold">Oder</p>
-                            </div>
+                        <div class="card bg-danger text-white text-center p-4 dashboard-card">
+                            <i class="fa-solid fa-shopping-cart fa-3x"></i>
+                            <p class="fs-4 fw-bold mt-3">Orders</p>
                         </div>
                     </a>
                 </div>
                 <div class="col-md-4">
                     <a href="#" class="text-decoration-none">
-                        <div class="card">
-                            <div class="card-body text-center">
-                                <i class="fa-solid fa-user fa-2x"></i>
-                                <p class="fs-4 fw-bold">User</p>
-                            </div>
+                        <div class="card bg-info text-white text-center p-4 dashboard-card">
+                            <i class="fa-solid fa-users fa-3x"></i>
+                            <p class="fs-4 fw-bold mt-3">Users</p>
                         </div>
                     </a>
                 </div>
                 <div class="col-md-4">
                     <a href="#" class="text-decoration-none">
-                        <div class="card">
-                            <div class="card-body text-center">
-                                <i class="fa-solid fa-user-plus fa-2x"></i>
-                                <p class="fs-4 fw-bold">Add Admin</p>
-                            </div>
+                        <div class="card bg-dark text-white text-center p-4 dashboard-card">
+                            <i class="fa-solid fa-user-shield fa-3x"></i>
+                            <p class="fs-4 fw-bold mt-3">Add Admin</p>
                         </div>
                     </a>
                 </div>

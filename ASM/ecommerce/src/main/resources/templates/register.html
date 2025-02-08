@@ -1,95 +1,112 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="base::layout(~{::section})">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{base::layout(~{::section})}">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register page</title>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
 </head>
 <body>
-    <section>
-        <style>
-            .form-container {
-                max-width: 600px;
-                margin: 50px auto;
-            }
-        </style>
-        <div class="form-container">
-            <h2 class="text-center mb-4 text-primary">Create an Account</h2>
-            <form action="your-server-endpoint" method="POST">
-                <!-- Name -->
-                <div class="form-group">
-                    <label for="name">Full Name</label>
-                    <input type="text" class="form-control" id="name" name="name" required>
+	<section>
+		<style>
+			.card {
+				border-radius: 15px;
+				box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+			}
+			.form-control {
+				border-radius: 10px;
+				padding: 10px;
+			}
+			.btn-custom {
+				background-color: #2575fc;
+				color: white;
+				border-radius: 10px;
+				transition: 0.3s;
+			}
+			.btn-custom:hover {
+				background-color: #1b5fd1;
+			}
+		</style>
+		<div class="container py-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="card p-4">
+                        <div class="row g-0">
+                            <div class="col-md-5 d-flex align-items-center">
+                                <img src="https://th.bing.com/th/id/OIP.Q0Jl4cs3stVPhdqr8ffEMQHaHa?w=171&h=180&c=7&r=0&o=5&dpr=2&pid=1.7" class="img-fluid rounded-start" alt="Register Image">
+                            </div>
+                            <div class="col-md-7">
+                                <div class="card-body">
+                                    <h3 class="text-center mb-4">Register</h3>
+                                    <form action="/saveUser" enctype="multipart/form-data" method="post">
+                                        <div class="row g-3">
+                                            <div class="col-md-6">
+                                                <label class="form-label">Full Name</label>
+                                                <input required class="form-control" name="name" type="text">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label">Mobile Number</label>
+                                                <input required class="form-control" name="mobileNumber" type="number">
+                                            </div>
+                                        </div>
+
+                                        <div class="mt-3">
+                                            <label class="form-label">Email</label>
+                                            <input required class="form-control" name="email" type="email">
+                                        </div>
+
+                                        <div class="row g-3 mt-3">
+                                            <div class="col-md-6">
+                                                <label class="form-label">Address</label>
+                                                <input required class="form-control" name="address" type="text">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label">City</label>
+                                                <input required class="form-control" name="city" type="text">
+                                            </div>
+                                        </div>
+
+                                        <div class="row g-3 mt-3">
+                                            <div class="col-md-6">
+                                                <label class="form-label">State</label>
+                                                <input required class="form-control" name="state" type="text">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label">Pincode</label>
+                                                <input required class="form-control" name="pincode" type="number">
+                                            </div>
+                                        </div>
+
+                                        <div class="row g-3 mt-3">
+                                            <div class="col-md-6">
+                                                <label class="form-label">Password</label>
+                                                <input required class="form-control" name="password" type="password">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label">Confirm Password</label>
+                                                <input required class="form-control" name="cpassword" type="password">
+                                            </div>
+                                        </div>
+
+                                        <div class="mt-3">
+                                            <label class="form-label">Profile Image</label>
+                                            <input class="form-control" name="img" type="file">
+                                        </div>
+
+                                        <div class="mt-4 text-center">
+                                            <button type="submit" class="btn btn-custom w-100">Register</button>
+                                        </div>
+                                    </form>
+                                    <div class="mt-3 text-center">
+                                        <p>Already have an account? <a href="/login" class="text-decoration-none">Login</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-        
-                <!-- Mobile Number -->
-                <div class="form-group">
-                    <label for="mobileNumber">Mobile Number</label>
-                    <input type="text" class="form-control" id="mobileNumber" name="mobileNumber" required>
-                </div>
-        
-                <!-- Email -->
-                <div class="form-group">
-                    <label for="email">Email Address</label>
-                    <input type="email" class="form-control" id="email" name="email" required>
-                </div>
-        
-                <!-- Address -->
-                <div class="form-group">
-                    <label for="address">Address</label>
-                    <textarea class="form-control" id="address" name="address" rows="4" required></textarea>
-                </div>
-        
-                <!-- City -->
-                <div class="form-group">
-                    <label for="city">City</label>
-                    <input type="text" class="form-control" id="city" name="city" required>
-                </div>
-        
-                <!-- State -->
-                <div class="form-group">
-                    <label for="state">State</label>
-                    <input type="text" class="form-control" id="state" name="state" required>
-                </div>
-        
-                <!-- Pincode -->
-                <div class="form-group">
-                    <label for="pincode">Pincode</label>
-                    <input type="text" class="form-control" id="pincode" name="pincode" required>
-                </div>
-        
-                <!-- Password -->
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" class="form-control" id="password" name="password" required>
-                </div>
-            
-                <!-- Profile Image -->
-                <div class="form-group">
-                    <label for="profileImage">Profile Image</label>
-                    <input type="file" class="form-control-file" id="profileImage" name="profileImage" required>
-                </div>
-        
-                <!-- Role -->
-                <div class="form-group">
-                    <label for="role">Role</label>
-                    <select class="form-control" id="role" name="role" required>
-                        <option value="User">User</option>
-                        <option value="Admin">Admin</option>
-                    </select>
-                </div>
-        
-                <!-- Terms and Conditions -->
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="terms" name="terms" required>
-                    <label class="form-check-label" for="terms">I accept the terms and conditions</label>
-                </div>
-        
-                <div class="form-group mt-3">
-                    <button type="submit" class="btn btn-primary btn-block">Register</button>
-                </div>
-            </form>
+            </div>
         </div>
-    </section>
+
+	</section>
 </body>
 </html>
