@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{base::layout(~{::section})}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<section>
+
+		<div class="container mt-5 p-5">
+			<div class="card-header">
+				<th:block th:if="${session.succMsg}">
+					<p class="text-success fw-bold text-center">[[${session.succMsg}]]</p>
+					<th:block th:text="${@commnServiceImpl.removeSessionMessage()}"></th:block>
+				</th:block>
+
+				<th:block th:if="${session.errorMsg}">
+					<p class="text-danger fw-bold text-center">[[${session.errorMsg}]]</p>
+					<th:block th:text="${@commnServiceImpl.removeSessionMessage()}"></th:block>
+				</th:block>
+			</div>
+			<form action="/user/save-order" method="post" id="orders">
+				<div class="container my-5">
+					<div class="row justify-content-center">
+						<div class="col-md-8 col-lg-6">
+							<!-- Payment Type Section -->
+							<div class="card shadow-sm border-0">
+								<div class="card-header bg-primary text-white text-center">
+									<h4 class="mb-0">Payment Details</h4>
+								</div>
+								<div class="card-body p-4">
+									<!-- Order Summary Table -->
+									<table class="table table-borderless mb-4">
+										<tbody>
+											<tr>
+												<td class="fw-medium">Total Price</td>
+												<td>:</td>
+												<td>[[${#numbers.formatDecimal(orderPrice, 1, 2)}]]</td>
+											</tr>
+											<tr>
+												<td class="fw-medium">Delivery Fee</td>
+												<td>:</td>
+												<td>250</td>
+											</tr>
+											<tr>
+												<td class="fw-medium">Tax</td>
+												<td>:</td>
+												<td>100</td>
+											</tr>
+											<tr class="border-top">
+												<td class="fw-bold">Grand Total</td>
+												<td>:</td>
+												<td class="fw-bold">[[${#numbers.formatDecimal(totalOrderPrice, 1, 2)}]]</td>
+											</tr>
+										</tbody>
+									</table>
+			
+									<!-- Payment Type and Pincode -->
+									<div class="mb-3">
+										<label for="paymentType" class="form-label fw-medium">Select Payment Type</label>
+										<select required name="paymentType" id="paymentType" class="form-select">
+											<option value="">-- Select --</option>
+											<option value="COD">Cash On Delivery</option>
+											<option value="ONLINE">Online Payment</option>
+										</select>
+									</div>
+			
+									<div class="mb-4">
+										<label for="pincode" class="form-label fw-medium">Pincode</label>
+										<input type="number" name="pincode" id="pincode" required class="form-control" placeholder="Enter your pincode">
+									</div>
+			
+									<!-- Submit Button -->
+									<button type="submit" class="btn btn-primary w-100 fw-medium py-2">Place Order</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+
+	</section>
+</body>
+</html>

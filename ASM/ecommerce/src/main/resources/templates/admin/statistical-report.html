@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::section})}">
+<head>
+    <title>Statistical Report</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.5.2/css/bootstrap.min.css"/>
+</head>
+<body>
+    <section>
+        <div class="container mt-4">
+            
+            <h2>Statistical Report</h2>
+            
+            <!-- Dropdown to select report type -->
+            <div class="mb-4">
+                <label for="reportType">Select Report Type: </label>
+                <select id="reportType" class="form-control" onchange="window.location.href = '/admin/statistical-report?reportType=' + this.value">
+                    <option value="" disabled selected>Select Report</option>
+                    <option value="total-products-sold-by-day">Total Products Sold By Day</option>
+                    <option value="total-income-by-day">Total Income By Day</option>
+                    <option value="total-products-sold-by-category">Total Products Sold By Category</option>
+                    <option value="total-products-sold-by-month">Total Products Sold By Month</option>
+                    <option value="total-income-by-month">Total Income By Month</option>
+                    <option value="total-products-sold-by-year">Total Products Sold By Year</option>
+                    <option value="total-income-by-year">Total Income By Year</option>
+                </select>
+            </div>
+    
+            <!-- Display report type name -->
+            <h3 th:text="${reportType}">Report Type Name</h3>
+    
+            <!-- Display report table -->
+            <table class="table table-bordered mt-3" th:if="${reportData != null}">
+                <thead>
+                    <tr>
+                        <th>Time Period</th>
+                        <th>Total Products / Income</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="report : ${reportData}">
+                        <td th:text="${report[1]}"></td> <!-- Total products sold or income -->
+                        <td th:text="${report[0]}"></td> <!-- Time (Day, Month, Year) -->
+                        
+                    </tr>
+                </tbody>
+            </table>
+    
+            <!-- If no data, display a message -->
+            <div th:if="${reportData == null}">
+                <p>No data available for this report. Please select a report type.</p>
+            </div>
+        </div>
+        
+    </section>
+</body>
+</html>

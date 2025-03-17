@@ -2,106 +2,109 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
 	th:replace="~{base::layout(~{::section})}">
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+<style>
+    .card {
+        border-radius: 15px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+    .form-control {
+        border-radius: 10px;
+        padding: 10px;
+    }
+    /* .btn-custom {
+        background-color: #2575fc;
+        color: white;
+        border-radius: 10px;
+        transition: 0.3s;
+    }
+    .btn-custom:hover {
+        background-color: #1b5fd1;
+    } */
+    #userRegister{
+        width: 100%;
+        max-width: 400px;
+        height: 800px;
+    }
+    
+</style>
 <body>
-	<section>
-		<style>
-			.card {
-				border-radius: 15px;
-				box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-			}
-			.form-control {
-				border-radius: 10px;
-				padding: 10px;
-			}
-			.btn-custom {
-				background-color: #2575fc;
-				color: white;
-				border-radius: 10px;
-				transition: 0.3s;
-			}
-			.btn-custom:hover {
-				background-color: #1b5fd1;
-			}
-		</style>
-		<div class="container py-5">
-            <div class="row justify-content-center">
-                <div class="col-lg-10">
-                    <div class="card p-4">
-                        <div class="row g-0">
-                            <div class="col-md-5 d-flex align-items-center">
-                                <img src="https://th.bing.com/th/id/OIP.Q0Jl4cs3stVPhdqr8ffEMQHaHa?w=171&h=180&c=7&r=0&o=5&dpr=2&pid=1.7" class="img-fluid rounded-start" alt="Register Image">
-                            </div>
-                            <div class="col-md-7">
-                                <div class="card-body">
-                                    <h3 class="text-center mb-4">Register</h3>
-                                    <form action="/saveUser" enctype="multipart/form-data" method="post">
-                                        <div class="row g-3">
-                                            <div class="col-md-6">
-                                                <label class="form-label">Full Name</label>
-                                                <input required class="form-control" name="name" type="text">
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label class="form-label">Mobile Number</label>
-                                                <input required class="form-control" name="mobileNumber" type="number">
-                                            </div>
-                                        </div>
+	<section style="background-image: url('img/logo/apple.jpg'); background-size: cover; background-position: center;" >
 
-                                        <div class="mt-3">
-                                            <label class="form-label">Email</label>
-                                            <input required class="form-control" name="email" type="email">
-                                        </div>
-
-                                        <div class="row g-3 mt-3">
-                                            <div class="col-md-6">
-                                                <label class="form-label">Address</label>
-                                                <input required class="form-control" name="address" type="text">
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label class="form-label">City</label>
-                                                <input required class="form-control" name="city" type="text">
-                                            </div>
-                                        </div>
-
-                                        <div class="row g-3 mt-3">
-                                            <div class="col-md-6">
-                                                <label class="form-label">State</label>
-                                                <input required class="form-control" name="state" type="text">
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label class="form-label">Pincode</label>
-                                                <input required class="form-control" name="pincode" type="number">
-                                            </div>
-                                        </div>
-
-                                        <div class="row g-3 mt-3">
-                                            <div class="col-md-6">
-                                                <label class="form-label">Password</label>
-                                                <input required class="form-control" name="password" type="password">
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label class="form-label">Confirm Password</label>
-                                                <input required class="form-control" name="cpassword" type="password">
-                                            </div>
-                                        </div>
-
-                                        <div class="mt-3">
-                                            <label class="form-label">Profile Image</label>
-                                            <input class="form-control" name="img" type="file">
-                                        </div>
-
-                                        <div class="mt-4 text-center">
-                                            <button type="submit" class="btn btn-custom w-100">Register</button>
-                                        </div>
-                                    </form>
-                                    <div class="mt-3 text-center">
-                                        <p>Already have an account? <a href="/login" class="text-decoration-none">Login</a></p>
-                                    </div>
+        <div class="row justify-content-center py-5">
+            <div class="col-lg-5">
+                <div class="card" style="max-width: 450px; margin: 0 auto; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border: none;">
+                    <div class="card-header text-center">
+                        <th:block th:if="${session.succMsg}">
+                            <p class="text-success fw-bold">[[${session.succMsg}]]</p>
+                            <th:block th:text="${@commnServiceImpl.removeSessionMessage()}"></th:block>
+                        </th:block>
+                        <th:block th:if="${session.errorMsg}">
+                            <p class="text-danger fw-bold">[[${session.errorMsg}]]</p>
+                            <th:block th:text="${@commnServiceImpl.removeSessionMessage()}"></th:block>
+                        </th:block>
+                    </div>
+                    <div style="color: white;"  class="card-body p-4">
+                        <h3 class="text-center mb-4">Register</h3>
+                        <form action="/saveUser" enctype="multipart/form-data" method="post" id="userRegister" novalidate>
+                            <div class="row g-3 mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">Full Name</label>
+                                    <input required class="form-control" name="name" type="text">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Mobile Number</label>
+                                    <input required class="form-control" name="mobileNumber" type="number">
                                 </div>
                             </div>
-                        </div>
+        
+                            <div class="mb-3">
+                                <label class="form-label">Email</label>
+                                <input required class="form-control" name="email" type="email">
+                            </div>
+        
+                            <div class="row g-3 mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">Address</label>
+                                    <input required class="form-control" name="address" type="text">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">City</label>
+                                    <input required class="form-control" name="city" type="text">
+                                </div>
+                            </div>
+        
+                            <div class="mb-3">
+                                <label class="form-label">Pincode</label>
+                                <input required class="form-control" name="pincode" type="number">
+                            </div>
+        
+                            <div class="row g-3 mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">Password</label>
+                                    <input required class="form-control" name="password" type="password">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Confirm Password</label>
+                                    <input required class="form-control" name="cpassword" type="password">
+                                </div>
+                            </div>
+        
+                            <div class="mb-4">
+                                <label class="form-label">Profile Image</label>
+                                <input class="form-control" name="img" type="file">
+                            </div>
+        
+                            <div class="mb-3 text-center">
+                                <button style="width: 30px; height: 40px; background-color: rgb(81, 81, 238);" type="submit" class="btn btn-custom w-100">Register</button>
+                            </div>
+        
+                            <div class="text-center">
+                                <p>Already have an account? <a href="/signin" class="text-decoration-none">Login</a></p>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

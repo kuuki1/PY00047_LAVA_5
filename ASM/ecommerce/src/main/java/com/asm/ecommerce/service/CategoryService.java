@@ -2,6 +2,8 @@ package com.asm.ecommerce.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+
 import com.asm.ecommerce.model.Category;
 
 public interface CategoryService {
@@ -18,5 +20,5 @@ public interface CategoryService {
 
 	public List<Category> getAllActiveCategory();
 
-	// public Page<Category> getAllCategorPagination(Integer pageNo,Integer pageSize);
+	public Page<Category> getAllCategorPagination(Integer pageNo,Integer pageSize);
 }

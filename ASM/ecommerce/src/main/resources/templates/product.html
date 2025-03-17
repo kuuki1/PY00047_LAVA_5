@@ -1,146 +1,300 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="base::layout(~{::section})">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::section})}">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <title>Blue Store</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <style>
         body {
-            background-color: #f8f9fa;
+            font-family: -apple-system, BlinkMacSystemFont, "San Francisco", "Helvetica Neue", sans-serif;
+            background-color: #f5f5f7; /* Màu nền xám nhạt của Apple */
+            color: #1d1d1f; /* Màu chữ đen đậm */
+            line-height: 1.5;
         }
-        .category-card:hover {
-            background-color: #0d6efd;
-            color: white;
-            cursor: pointer;
+        h1 {
+            font-size: 56px;
+            font-weight: 600; /* Đậm vừa phải, giống Apple */
+            letter-spacing: -0.02em;
         }
-        .search-bar {
-            background-color: #0d6efd;
+        .lead {
+            font-size: 21px;
+            font-weight: 400;
+            color: #6e6e73; /* Màu xám nhạt cho phụ đề */
+        }
+        .btn-primary {
+            background-color: #0071e3; /* Xanh dương của Apple */
+            border-radius: 980px; /* Nút hình viên thuốc đặc trưng */
+            border: none;
+            padding: 12px 24px;
+            font-size: 17px;
+            font-weight: 400;
+            color: #fff;
+            transition: background-color 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: #005bb5; /* Xanh đậm hơn khi hover */
+            color: #fff;
+            transform: none; /* Bỏ scale để giống Apple */
+        }
+        .card {
+            border-radius: 18px;
+            overflow: hidden;
+            background-color: #fff;
+            border: none;
+            transition: transform 0.2s ease-in-out;
+            display: flex;
+            flex-direction: column;
+        }
+        .card:hover {
+            transform: translateY(-2px); /* Hiệu ứng nâng nhẹ nhàng */
+        }
+        .card img {
+            max-height: 220px;
+            object-fit: contain;
             padding: 20px;
+            background-color: #f5f5f7; /* Nền xám nhạt cho hình ảnh */
+        }
+        .card-body {
+            flex-grow: 1;
+            padding: 20px;
+            text-align: center;
+        }
+        .card-body p.fw-bold {
+            font-size: 19px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .card-body p.text-danger {
+            font-size: 17px;
+            font-weight: 400;
+            color: #1d1d1f; /* Đổi thành đen cho giá */
+        }
+        .card-body p.text-danger .text-secondary {
+            color: #6e6e73; /* Xám nhạt cho giá gốc */
+            font-size: 14px;
+        }
+        .search-box {
+            max-width: 700px;
+            margin: 40px auto;
+        }
+        .search-box .form-control {
             border-radius: 10px;
-            color: white;
+            padding: 12px 20px;
+            font-size: 17px;
+            border: 1px solid #d2d2d7; /* Viền xám nhạt */
+            box-shadow: none;
         }
-        .product-card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        .category-list a {
+            font-size: 17px;
+            font-weight: 400;
+            color: #1d1d1f;
+            padding: 12px;
+            border: none;
+            background: none;
         }
-        .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        .category-list a:hover {
+            color: #0071e3; /* Xanh dương khi hover */
+        }
+        .pagination .page-link {
+            color: #1d1d1f;
+            border: none;
+            font-size: 17px;
+        }
+        .pagination .page-item.active .page-link {
+            background-color: #0071e3;
+            color: #fff;
+            border-radius: 50%;
         }
     </style>
 </head>
 <body>
     <section>
-        <!-- Hero Section -->
-        <div class="container-fluid bg-primary text-white py-5 text-center">
-            <h1 class="display-4">Welcome to Our Blue Store</h1>
+        <div class="container text-center py-5">
+            <h1>Welcome to Blue Store</h1>
             <p class="lead">Find your favorite Apple products here.</p>
-            <form class="d-flex justify-content-center mt-3">
-                <input type="text" class="form-control w-50" placeholder="Search for products...">
-                <button class="btn btn-light ms-2"><i class="fa fa-search"></i> Search</button>
+            <form action="search" method="get" class="search-box d-flex mt-4">
+                <input type="text" class="form-control" name="ch" placeholder="Search for products..." th:value="${ch}">
+                <button style="background-color: #1d1d1f; color: white;" class="btn ms-3">Search</button>
             </form>
         </div>
 
-        <!-- Main Content -->
-        <div class="container my-5">
+        <div class="container">
             <div class="row">
-                <!-- Categories Section -->
-                <div class="col-md-3">
-                    <h5 class="text-dark mb-3">Categories</h5>
-                    <div class="list-group">
-                        <a href="#" class="list-group-item list-group-item-actionz">
-                            All Products
-                        </a>
-                        <a href="#" class="list-group-item list-group-item-action">Mac</a>
-                        <a href="#" class="list-group-item list-group-item-action">iPhone</a>
-                        <a href="#" class="list-group-item list-group-item-action">iPad</a>
-                        <a href="#" class="list-group-item list-group-item-action">Apple Watch</a>
-                        <a href="#" class="list-group-item list-group-item-action">AirPods</a>
-                        <a href="#" class="list-group-item list-group-item-action">Accessories</a>
+                
+                <div class="col-md-2">
+                    <div class="list-group category-list">
+                        
+                        <a href="/products"
+									th:classappend="${paramValue==''} ? 'active':''"
+									class="list-group-item list-group-item-action"
+									aria-current="true"> All </a> <a th:each="c:${categories}"
+									th:href="@{'/products?category='+${c.name}}"
+									th:classappend="${paramValue == c.name} ? 'active':''"
+									class="list-group-item list-group-item-action">[[${c.name}]]</a>
+
                     </div>
-                </div>
-
-                <!-- Products Section -->
-                <div class="col-md-9">
-                    <h5 class="text-dark text-center mb-4">Products</h5>
-                    <div class="row g-4">
-                        <!-- Product Card 1 -->
-                        <div class="col-md-4">
-                            <div class="card border-0 shadow-sm">
-                                <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Product 1">
-                                <div class="card-body">
-                                    <h6 class="card-title">MacBook Pro</h6>
-                                    <div class="row text-center">
-                                        <p class="card-text text-muted fw-bold">$249 <span class="fs-6 text-success">20% off</span></p>
+                </div> 
+                <div class="col-md-10">
+                    <div class="row">
+                        <th:block th:if="${productsSize > 0}">
+                            <div class="col-md-3 mb-4 d-flex align-items-stretch" th:each="p:${products}">
+                                <div class="card p-3 h-100 d-flex flex-column"
+                                     style="transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease; border: 2px solid transparent; position: relative;"
+                                     onmouseover="this.style.transform='translateY(-15px)'; this.style.boxShadow='0 10px 25px rgba(0, 0, 0, 0.5)'; this.querySelector('.card-img-top').style.transform='scale(1.1)';"
+                                     onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 1px 3px rgba(0, 0, 0, 0.12)'; this.style.borderColor='transparent'; this.querySelector('.card-img-top').style.transform='scale(1)';">
+                                    <!-- Ảnh sản phẩm với container cố định -->
+                                    <div style="overflow: hidden; width: 100%; height: 220px;">
+                                        <img style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;" 
+                                             th:src="@{'/img/product_img/'+${p.image}}" 
+                                             class="card-img-top" 
+                                             alt="Product Image">
                                     </div>
-                                    <button class="btn btn-primary btn-sm w-100">View Details</button>
+                                    <!-- Nội dung thẻ -->
+                                    <div class="card-body d-flex flex-column flex-grow-1">
+                                        <!-- Tiêu đề cố định chiều cao và cắt ngắn nếu dài -->
+                                        <p class="fw-bold text-truncate" style="min-height: 24px; margin-bottom: 0.5rem;">[[${p.title}]]</p>
+                                        <!-- Giá căn gọn gàng -->
+                                        <p class="text-danger mb-0" style="min-height: 24px;">
+                                            [[${#numbers.formatDecimal(p.discountPrice, 1, 2)}]]
+                                            <span class="text-secondary text-decoration-line-through">
+                                                [[${#numbers.formatDecimal(p.price, 1, 2)}]]
+                                            </span>
+                                        </p>
+                                        <!-- Nút bấm đẩy xuống dưới cùng -->
+                                         <br>
+                                        <div class="mt-auto">
+                                            <a style="background-color: #1d1d1f; color: white;" 
+                                               th:href="@{'/product/'+${p.id}}" 
+                                               class="btn w-100 mb-1">
+                                                View Details
+                                            </a>
+                                            <a th:href="@{'/user/addToCart/'+${p.id}}"
+                                               class="btn btn-danger w-100">
+                                                Add To Cart
+                                            </a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-
-                        <!-- Product Card 2 -->
-                        <div class="col-md-4">
-                            <div class="card border-0 shadow-sm">
-                                <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Product 2">
-                                <div class="card-body">
-                                    <h6 class="card-title">iPhone 14</h6>
-                                    <div class="row text-center">
-                                        <p class="card-text text-muted fw-bold">$249 <span class="fs-6 text-success">20% off</span></p>
-                                    </div>
-                                    <button class="btn btn-primary btn-sm w-100">View Details</button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Product Card 3 -->
-                        <div class="col-md-4">
-                            <div class="card border-0 shadow-sm">
-                                <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Product 3">
-                                <div class="card-body">
-                                    <h6 class="card-title">iPad Pro</h6>
-                                    <div class="row text-center">
-                                        <p class="card-text text-muted fw-bold">$249 <span class="fs-6 text-success">20% off</span></p>
-                                    </div>
-                                    <button class="btn btn-primary btn-sm w-100">View Details</button>
-                                </div>
-                            </div>
-                        </div>
+                        </th:block>
+                        <th:block th:unless="${productsSize > 0}">
+                            <p class="fs-4 text-center text-danger">Product not available</p>
+                        </th:block>
                     </div>
+                    
+                    <th:block th:if="${productsSize>0}">
+                        <div class="text-center mt-5">Total Products: [[${totalElements}]]</div>
+                        <nav class="d-flex justify-content-center mt-4">
+                            <th:block th:if="${ch==null && paramValue == null}">
+                                    <th:block th:if="${productsSize>0}">
+                                        <div class="col-md-6">
+                                            <nav aria-label="Page navigation example">
+                                                <ul class="pagination">
+                                                    <li class="page-item"
+                                                        th:classappend="${isFirst} ? 'disabled':''"><a
+                                                        class="page-link"
+                                                        th:href="@{'/products?pageNo='+${pageNo-1}}"
+                                                        aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+                                                    </a></li>
 
-                    <!-- Row 2 of Products -->
-                    <div class="row g-4 mt-3">
-                        <!-- Product Card 4 -->
-                        <div class="col-md-4">
-                            <div class="card border-0 shadow-sm">
-                                <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Product 4">
-                                <div class="card-body">
-                                    <h6 class="card-title">Apple Watch</h6>
-                                    <div class="row text-center">
-                                        <p class="card-text text-muted fw-bold">$249 <span class="fs-6 text-success">20% off</span></p>
-                                    </div>
-                                    <button class="btn btn-primary btn-sm w-100">View Details</button>
-                                </div>
-                            </div>
-                        </div>
+                                                    <li th:each="i:${#numbers.sequence(1,totalPages)}"
+                                                        class="page-item" th:classappend="${pageNo+1==i}?'active':''"
+                                                        ]]><a class="page-link"
+                                                        th:href="@{'/products?pageNo='+${i-1}}">[[${i}]]</a></li>
 
-                        <!-- Product Card 5 -->
-                        <div class="col-md-4">
-                            <div class="card border-0 shadow-sm">
-                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7DMuolVZtH4cUYULLjMDpqGmP5eaNm7usvQ&s" class="card-img-top" alt="Product 5">
-                                <div class="card-body">
-                                    <h6 class="card-title">AirPods Pro</h6>
-                                    <div class="row text-center">
-                                        <p class="card-text text-muted fw-bold">$249 <span class="fs-6 text-success">20% off</span></p>
-                                    </div>
-                                    
-                                    <button class="btn btn-primary btn-sm w-100" onclick="window.location.href='/product'">View Details</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                                                    <li class="page-item"
+                                                        th:classappend="${isLast} ? 'disabled':''"><a
+                                                        class="page-link"
+                                                        th:href="@{'/products?pageNo='+${pageNo+1}}"
+                                                        aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+                                                    </a></li>
+                                                </ul>
+                                            </nav>
+                                        </div>
+                                    </th:block>
+                                </th:block>
+                                <th:block th:if="${ch != null}">
+                                    <ul class="pagination">
+                                        <!-- Previous Page Link -->
+                                        <li class="page-item" th:classappend="${isFirst} ? 'disabled' : ''">
+                                            <a class="page-link" 
+                                            th:href="@{'/search?ch=' + ${ch} + '&pageNo=' + ${pageNo - 1}}"
+                                            aria-label="Previous">
+                                                <span aria-hidden="true">&laquo;</span>
+                                            </a>
+                                        </li>
+
+                                        <!-- Page Numbers -->
+                                        <th:block th:if="${productsSize >0}">
+                                            <li th:each="i : ${#numbers.sequence(1, totalPages)}" 
+                                                class="page-item" 
+                                                th:classappend="${pageNo + 1 == i} ? 'active' : ''">
+                                                <a class="page-link" 
+                                                th:href="@{'/search?ch=' + ${ch} + '&pageNo=' + ${i - 1}}">
+                                                    [[${i}]]
+                                                </a>
+                                            </li>
+                                        </th:block>
+                                        <th:block th:if="${productsSize < 0}">
+                                            <li class="page-item">
+                                                0
+                                            </li>
+                                        </th:block>
+                                        
+
+                                        <!-- Next Page Link -->
+                                        <li class="page-item" th:classappend="${isLast} ? 'disabled' : ''">
+                                            <a class="page-link" 
+                                            th:href="@{'/search?ch=' + ${ch} + '&pageNo=' + ${pageNo + 1}}"
+                                            aria-label="Next">
+                                                <span aria-hidden="true">&raquo;</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </th:block>
+                                <th:block th:if="${paramValue != null}">
+                                    <ul class="pagination">
+                                        <!-- Previous Page Link -->
+                                        <li class="page-item" th:classappend="${isFirst} ? 'disabled' : ''">
+                                            <a class="page-link" 
+                                            th:href="@{'/products?category=' + ${paramValue} + '&pageNo=' + ${pageNo - 1}}"
+                                            aria-label="Previous">
+                                                <span aria-hidden="true">&laquo;</span>
+                                            </a>
+                                        </li>
+
+                                        <!-- Page Numbers -->
+                                        <th:block th:if="${productsSize >0}">
+                                            <li th:each="i : ${#numbers.sequence(1, totalPages)}" 
+                                                class="page-item" 
+                                                th:classappend="${pageNo + 1 == i} ? 'active' : ''">
+                                                <a class="page-link" 
+                                                th:href="@{'/products?category=' + ${paramValue} + '&pageNo=' + ${i - 1}}">
+                                                    [[${i}]]
+                                                </a>
+                                            </li>
+                                        </th:block>
+                                        <th:block th:if="${productsSize < 0}">
+                                            <li class="page-item">
+                                                0
+                                            </li>
+                                        </th:block>
+                                        
+
+                                        <!-- Next Page Link -->
+                                        <li class="page-item" th:classappend="${isLast} ? 'disabled' : ''">
+                                            <a class="page-link" 
+                                            th:href="@{'/products?category=' + ${paramValue} + '&pageNo=' + ${pageNo + 1}}"
+                                            aria-label="Next">
+                                                <span aria-hidden="true">&raquo;</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </th:block>
+                        </nav>
+                    </th:block>
+
+                    
                 </div>
             </div>
         </div>
